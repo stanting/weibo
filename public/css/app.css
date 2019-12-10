@@ -11361,7 +11361,36 @@ body {
   font-weight: normal;
 }
 
-nav.navbar.navbar-expand-lg {
+.navbar-expand-lg {
   margin-bottom: 20px;
+}
+
+footer {
+  margin-top: 45px;
+  padding-top: 5px;
+  border-top: 1px solid #eaeaea;
+  color: #777;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+footer a {
+  color: #555;
+}
+
+footer a:hover {
+  color: #222;
+}
+
+footer small {
+  float: left;
+}
+
+footer .brand-icon {
+  width: 17px;
+  height: 17px;
+  background: #c13871;
+  color: #fff;
+  border-radius: 5px;
 }
 
