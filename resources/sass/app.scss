@@ -27,14 +27,11 @@ footer {
 
     a {
         color: #555;
+        vertical-align: middle;
 
         &:hover {
             color: #222;
         }
-    }
-
-    small {
-        float: left;
     }
 
     .brand-icon {
