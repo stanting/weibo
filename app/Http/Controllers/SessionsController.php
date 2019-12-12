@@ -22,10 +22,18 @@ class SessionsController extends Controller
         if (Auth::attempt($credentials)) {
             session()->flash('success', 'Welcom back.');
             return redirect()->route('users.show', Auth::user()->id);
-        } else {
-            session()->flash('danger', 'Sorry, incorrect email or password.');
-            return redirect()->back()->withInput();
         }
 
+        session()->flash('danger', 'Sorry, incorrect email or password.');
+        return redirect()->back()->withInput();
+    }
+
+    public function destroy()
+    {
+        Auth::logout();
+
+        session()->flash('success', 'Logouted.');
+
+        return redirect()->route('login');
     }
 }
