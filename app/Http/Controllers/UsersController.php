@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -31,6 +32,8 @@ class UsersController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password)
         ]);
+
+        Auth::login($user);
 
         session()->flash('success', 'Welcome! Lets go.');
 
