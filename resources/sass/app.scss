@@ -59,3 +59,13 @@ footer {
         margin-top: 15px;
     }
 }
+// User profile
+.gravatar-edit {
+    margin: 15px auto;
+    text-align: center;
+    .gravatar {
+        float: none;
+        max-width: 100px;
+        border-radius: 50%;
+    }
+}

@@ -39,4 +39,30 @@ class UsersController extends Controller
 
         return redirect()->route('users.show', $user->id);
     }
+
+    public function edit(User $user)
+    {
+        return view('users.edit', compact('user'));
+    }
+
+    public function update(User $user, Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required|max:50',
+            'password' => 'nullable|confirmed|min:6'
+        ]);
+
+        $data = [
+            'name' => $request->name
+        ];
+        if ($request->password) {
+            $data['password'] = Hash::make($request->password);
+        }
+
+        $user->update($data);
+
+        session()->flash('success', 'Profile update completed.');
+
+        return redirect()->route('users.show', $user->id);
+    }
 }

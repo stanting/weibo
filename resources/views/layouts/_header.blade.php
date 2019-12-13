@@ -8,7 +8,7 @@
                         <a class="nav-link dropdown-toggle" id="dropdownMenu" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }}</a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenu">
                             <a class="dropdown-item" href="{{ route('users.show', Auth::user()) }}">Personal</a>
-                            <a class="dropdown-item" href="#">Edit profile</a>
+                            <a class="dropdown-item" href="{{ route('users.edit', Auth::user()) }}">Edit profile</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" id="logout" href="#">
                                 <form action="{{ route('logout') }}" method="POST">
