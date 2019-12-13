@@ -11410,3 +11410,14 @@ footer .brand-icon {
   margin-top: 15px;
 }
 
+.gravatar-edit {
+  margin: 15px auto;
+  text-align: center;
+}
+
+.gravatar-edit .gravatar {
+  float: none;
+  max-width: 100px;
+  border-radius: 50%;
+}
+
