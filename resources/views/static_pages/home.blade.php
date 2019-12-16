@@ -7,6 +7,9 @@
                 <section class="status-form">
                     @include('shared._status_form')
                 </section>
+                <h4>Weibo list</h4>
+                <hr>
+                @include('shared._feed')
             </div>
             <aside class="col-md-4">
                 <section class="user-info">
