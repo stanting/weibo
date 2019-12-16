@@ -11398,7 +11398,6 @@ footer .brand-icon {
 }
 
 .user-info .gravatar {
-  float: none;
   max-width: 70px;
   border-radius: 50%;
 }
@@ -11416,7 +11415,6 @@ footer .brand-icon {
 }
 
 .gravatar-edit .gravatar {
-  float: none;
   max-width: 100px;
   border-radius: 50%;
 }
