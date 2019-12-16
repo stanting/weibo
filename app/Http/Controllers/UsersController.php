@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
+Use Mail;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -12,8 +13,22 @@ class UsersController extends Controller
     public function __construct()
     {
         $this->middleware('auth', [
-            'except' => ['show', 'create', 'store', 'index']
+            'except' => ['show', 'create', 'store', 'index', 'confirmEmail']
         ]);
+    }
+
+    protected function sendEmailConfirmationTo($user)
+    {
+        $view = 'emails.confirm';
+        $data = compact('user');
+        $form = 'admin@qq.com';
+        $name = 'Admin';
+        $to = $user->email;
+        $subject = 'Thank you for registering the Weibo app, please confirm your email.';
+
+        Mail::send($view, $data, function ($message) use ($form, $name, $to, $subject) {
+            $message->from($form, $name)->to($to)->subject($subject);
+        });
     }
 
     public function create()
@@ -40,11 +55,9 @@ class UsersController extends Controller
             'password' => Hash::make($request->password)
         ]);
 
-        Auth::login($user);
-
-        session()->flash('success', 'Welcome! Lets go.');
-
-        return redirect()->route('users.show', $user->id);
+        $this->sendEmailConfirmationTo($user);
+        session()->flash('success', 'The email has been sent, please check.');
+        return redirect('/');
     }
 
     public function edit(User $user)
@@ -93,5 +106,18 @@ class UsersController extends Controller
         session()->flash('success', 'Delete successful!');
 
         return back();
+    }
+
+    public function confirmEmail($token)
+    {
+        $user = User::where('activation_token', $token)->firstOrFail();
+
+        $user->activated = true;
+        $user->activation_token = null;
+        $user->save();
+
+        Auth::login($user);
+        session()->flash('success', 'Congratulations, activation succeeded!');
+        return redirect()->route('users.show', $user);
     }
 }
