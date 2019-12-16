@@ -8,6 +8,9 @@
             <section class="user-info">
                 @include('shared._user_info', compact('user'))
             </section>
+            <section class="stats mt-2">
+                @include('shared._stats', compact('user'))
+            </section>
             <section class="status">
                 @if ($statuses->count() > 0)
                     <ul class="list-unstyled">

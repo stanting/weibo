@@ -64,12 +64,12 @@ class User extends Authenticatable
 
     public function followers()
     {
-        return $this->belongsToMany(User::class, 'followers', 'user_id', 'followers_id');
+        return $this->belongsToMany(User::class, 'followers', 'user_id', 'follower_id');
     }
 
     public function followings()
     {
-        return $this->belongsToMany(User::class, 'followers', 'followers_id', 'user_id');
+        return $this->belongsToMany(User::class, 'followers', 'follower_id', 'user_id');
     }
 
     public function follow($userIds)
@@ -86,5 +86,10 @@ class User extends Authenticatable
             $userIds = compact('userIds');
         }
         $this->followings()->detach($userIds);
+    }
+
+    public function isFollowing($userIds)
+    {
+        return $this->followings->contains($userIds);
     }
 }
