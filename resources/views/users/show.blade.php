@@ -8,6 +8,9 @@
             <section class="user-info">
                 @include('shared._user_info', compact('user'))
             </section>
+            @if (Auth::check())
+                @include('users._follow_form')
+            @endif
             <section class="stats mt-2">
                 @include('shared._stats', compact('user'))
             </section>
